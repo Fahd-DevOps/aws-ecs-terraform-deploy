@@ -33,6 +33,6 @@ resource "aws_ecs_service" "my_service" {
   network_configuration {
     subnets          = [aws_subnet.test_subnet.id]
     security_groups  = [aws_security_group.ecs_sg.id]
-    assign_public_ip = "ENABLED"
+    assign_public_ip = true
   }
 }
