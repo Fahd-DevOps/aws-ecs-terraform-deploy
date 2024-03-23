@@ -3,8 +3,12 @@ resource "aws_ecs_cluster" "test_cluster" {
 }
 
 resource "aws_ecs_task_definition" "test_task" {
-  family                = var.ecs_task_name
-  container_definitions = <<EOF
+  family                   = var.ecs_task_name
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu                      = 256
+  memory                   = 512
+  container_definitions    = <<EOF
   [
     {
       "name": "my-container",
@@ -14,7 +18,7 @@ resource "aws_ecs_task_definition" "test_task" {
       "portMappings": [
         {
           "containerPort": 3000,
-          "hostPort": 0,
+          "hostPort": 3000,
           "protocol": "tcp"
         }
       ]
