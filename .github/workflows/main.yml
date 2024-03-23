@@ -41,12 +41,8 @@ jobs:
         run: docker push fkdevops/node-app-01:latest
 
       - name: Update ECS service
-        uses: aws-actions/amazon-ecs-deploy-task@v4
-        with:
-          cluster-name: test-ecs-cluster
-          service-name: test-ecs-service
-          task-definition: test-ecs-task
-          image: fkdevops/node-app-01:latest
-          wait-for-service-stability: true
-          aws-region: us-east-1
-          credentials: ${{ secrets.AWS_ACCESS_KEY_ID }}:${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws ecs update-service --cluster test-ecs-cluster --service test-ecs-service --force-new-deployment --wait-for-service-stability --region us-east-1  
