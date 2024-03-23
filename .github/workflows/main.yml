@@ -35,4 +35,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Push Docker image to registry
-        run: docker push fkdevops/node-app-01
+        run: docker push fkdevops/node-app-01:latest
