@@ -3,8 +3,8 @@ resource "aws_ecs_cluster" "test_cluster" {
 }
 
 resource "aws_ecs_task_definition" "test_task" {
-  family                   = var.ecs_task_name
-  container_definitions    = <<EOF
+  family                = var.ecs_task_name
+  container_definitions = <<EOF
   [
     {
       "name": "my-container",
@@ -31,8 +31,8 @@ resource "aws_ecs_service" "my_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [aws_subnet.test_subnet.id]
-    security_groups = [aws_security_group.ecs_sg.id]
+    subnets          = [aws_subnet.test_subnet.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
     assign_public_ip = "ENABLED"
   }
 }
