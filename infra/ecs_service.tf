@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "test_task" {
   [
     {
       "name": "my-container",
-      "image": "fkdevops/hello-world-app:latest",
+      "image": "fkdevops/node-app-01:latest",
       "cpu": 256,
       "memory": 512,
       "portMappings": [
