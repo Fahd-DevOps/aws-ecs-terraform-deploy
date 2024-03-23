@@ -16,6 +16,12 @@ jobs:
         with:
           node-version: 16
       
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install ESLint
+        run: npm install eslint --save-dev
+        
       - name: Lint code
         run: npm run lint
       
