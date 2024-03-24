@@ -18,3 +18,13 @@ resource "aws_subnet" "test_subnet" {
     "Name" = "az1_public_subnet"
   }
 }
+
+resource "aws_subnet" "test_subnet_2" {
+  vpc_id                  = aws_vpc.test_vpc.id
+  cidr_block              = var.pub_sub_2
+  availability_zone       = "us-east-1b"
+  map_public_ip_on_launch = "true"
+  tags = {
+    "Name" = "az2_public_subnet"
+  }
+}
