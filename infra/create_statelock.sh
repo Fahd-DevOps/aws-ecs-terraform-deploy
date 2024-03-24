@@ -33,3 +33,7 @@ sleep 5
 
 # if you want to check again run
 # aws dynamodb describe-table --table-name terraform-tfstate --region us-east-1
+
+# To extract Alb DNS name run
+# aws elbv2 describe-load-balancers --query "LoadBalancers[?Type=='application'].DNSName" --output text > alb-dns.txt
+
