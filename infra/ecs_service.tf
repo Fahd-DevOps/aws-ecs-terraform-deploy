@@ -34,6 +34,12 @@ resource "aws_ecs_service" "my_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.ecs_service_tg.arn
+    container_name   = "my-container"
+    container_port   = 3000
+  }
+
   network_configuration {
     subnets          = [aws_subnet.test_subnet.id]
     security_groups  = [aws_security_group.ecs_sg.id]
