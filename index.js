@@ -3,7 +3,7 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello Node from ecs with alb\n'
+  const msg = 'Hello Node from ecs with alb and monitor with new relic\n'
   res.end(msg);
 });
 
