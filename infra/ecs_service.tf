@@ -21,7 +21,19 @@ resource "aws_ecs_task_definition" "test_task" {
           "hostPort": 3000,
           "protocol": "tcp"
         }
+        
       ]
+    },
+    {
+      "name": "newrelic-infra",
+      "image": "newrelic/infrastructure:latest",
+      "environment": [
+        {
+          "name": "NRIA_LICENSE_KEY",
+          "value": "4863f83aa3ae90f38eadb5ecd5f07126FFFFNRAL"
+        }
+      ],
+      "essential": true
     }
   ]
   EOF
