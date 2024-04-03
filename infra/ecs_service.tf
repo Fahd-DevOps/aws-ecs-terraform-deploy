@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "test_task" {
       "environment": [
         {
           "name": "NRIA_LICENSE_KEY",
-          "value": "4863f83aa3ae90f38eadb5ecd5f07126FFFFNRAL"
+          "value": "your_key"
         }
       ],
       "essential": true
