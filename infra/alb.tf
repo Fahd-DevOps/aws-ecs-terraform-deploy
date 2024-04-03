@@ -4,6 +4,7 @@ resource "aws_lb" "app_lb" {
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.test_subnet.id, aws_subnet.test_subnet_2.id]
   load_balancer_type = "application"
+  depends_on         = [aws_ecs_cluster.test_cluster]
 }
 
 resource "aws_lb_target_group" "ecs_service_tg" {
@@ -20,6 +21,7 @@ resource "aws_lb_target_group" "ecs_service_tg" {
     healthy_threshold   = 2
     unhealthy_threshold = 5
   }
+  depends_on = [aws_ecs_cluster.test_cluster]
 }
 
 resource "aws_lb_listener" "app_listener" {
@@ -31,4 +33,5 @@ resource "aws_lb_listener" "app_listener" {
     target_group_arn = aws_lb_target_group.ecs_service_tg.arn
     type             = "forward"
   }
+  depends_on = [aws_lb.app_lb, aws_lb_target_group.ecs_service_tg]
 }

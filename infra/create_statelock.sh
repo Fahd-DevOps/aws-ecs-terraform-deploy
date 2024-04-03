@@ -37,3 +37,5 @@ sleep 5
 # To extract Alb DNS name run
 # aws elbv2 describe-load-balancers --query "LoadBalancers[?Type=='application'].DNSName" --output text > alb-dns.txt
 
+# test app using apacheBench
+# ab -n 200 -c 1 http://alb_url
